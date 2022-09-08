@@ -18,19 +18,18 @@ public function register()
 public function handleRegister(Request $request)
     
     {
-
+       
         $request->validate([
-
-           ' name'=>' string| max:100',
-           ' email'=>'email |max:100 ',
-           ' pass'=>' string |max:50| min:8'
-        ]);
-
+            'name'=>'required|string|max:100',
+            'email'=>'required|email|max:100',
+            'password'=>'required|string|max:50|min:8'
+                    ]);
+ 
        $user = User::create([
 
             'name'=> $request->name,
             'email'=> $request->email,
-            'pass'=>Hash::make ($request->pass),
+            'password'=>Hash::make ($request->password),
 
         ]);
 
@@ -38,4 +37,43 @@ public function handleRegister(Request $request)
         return redirect (route('books.index'));
 
     }
+
+
+
+        
+public function login()
+{
+    return view('auth.login');
 }
+
+public function handleLogin(Request $request)
+
+{
+
+    $request->validate([
+        'email'=>'required|email|max:100',
+        'password'=>'required|string|max:50|min:8'
+                ]);
+
+    $is_login = Auth::attempt(['email'=> $request->email,'password'=> $request->password]);
+            
+                
+            if (! $is_login){
+
+                return back();
+            }
+
+            return redirect (route('books.index'));
+
+
+    }
+
+public function logout()
+
+{
+    auth::logout();
+    return back();
+}
+}
+
+

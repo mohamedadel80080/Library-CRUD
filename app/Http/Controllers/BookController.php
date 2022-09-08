@@ -117,7 +117,6 @@ public function delete($id){
 
     $book = Book::findOrFail($id)->delete;
     return back();
-
     
 
 // if you need delete img after delete book uncomment this function
