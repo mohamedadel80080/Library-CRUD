@@ -4,6 +4,7 @@
 {{-- create button is continuous with BookController | method 'create' use to create New book --}}
 <a href="{{route('books.create')}}"><button type="button" class="btn btn-success">create</button></a>
 <a href="{{route('Categories.index')}}"><button type="button" class="btn btn-success">Categories</button></a>
+<a href="{{route('auth.register')}}"><button type="button" class="btn btn-success">register</button></a>
 
 {{-- foreach use t o loop on divs to display all books  --}}
 @foreach($books as $book) 
