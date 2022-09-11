@@ -17,25 +17,22 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+protected $fillable = [
         'name',
         'email',
         'password',
+        'access_token',
+        'oauth_token'
     ];
-
+protected $hidden = ['password'];
+public function notes()
+    {
+            return $this ->hasMany('App\Models\Note');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
      */
 
 }

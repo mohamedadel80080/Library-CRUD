@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 
 class IsLogin
 {
@@ -21,10 +21,8 @@ class IsLogin
 
         if (Auth::check())
         {
-
             return $next($request);
         }
-
-        return redirect (route('auth.login'));
+            return redirect (route('auth.login'));
     }
 }

@@ -8,6 +8,8 @@ create book
 <form method="POST" action="{{route('books.store')}}" enctype="multipart/form-data">
 @csrf
 
+
+
 <div class="mb-3">
 {{--use Old from laravel to save input after relode page or Or there is a mistake --}}
     <label class="form-label">Title</label>
@@ -18,6 +20,15 @@ create book
     <label for="formFile" class="form-label">Image</label>
     <input class="form-control" type="file" name="img">
 </div>
+    <label class="form-label">choose category: </label>
+@foreach ( $category as $Category )
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" name="category_ids[]" value="{{$Category->id}}" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">{{$Category->name}}</label>
+</div>
+
+<br>
+@endforeach
 
 <div class="mb-3">
     <label class="form-label">description</label>
@@ -27,8 +38,6 @@ create book
     <button class="btn btn-primary" type="submit">Submit form</button>
     <a href="{{route('books.index')}}"><button type="button" class="btn btn-dark">cancel</button>
 </div>
-
-
 
 </form>
 @endsection
